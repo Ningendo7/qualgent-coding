@@ -22,11 +22,11 @@ jobs:
 
       - name: Run qgjob submit
         run: |
-          python qg-job.py submit --org-id qualgent --app-version-id xyz123 --test tests/onboarding.spec.js --priority 1 --target emulator > output.json
+          python qg-job/qg-job.py submit --org-id qualgent --app-version-id xyz123 --test tests/onboarding.spec.js --priority 1 --target emulator > output.json
           JOB_ID=$(jq -r '.job_id' output.json)
           echo "Job ID: $JOB_ID"
+          echo "JOB_ID=$JOB_ID" >> $GITHUB_ENV
 
       - name: Poll for job completion
         run: |
-          python qg-job.py status --job-id $JOB_ID --wait
-        # The CLI will exit non-zero if the job failed, so workflow fails automatically if so.
+          python qg-job/qg-job.py status --job-id ${{ env.JOB_ID }} --wait

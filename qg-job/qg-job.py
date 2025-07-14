@@ -2,6 +2,7 @@ import argparse
 import requests
 import sys
 import time
+import json
 
 BACKEND_URL = "http://18.212.231.237:8000"  # Change if your backend URL differs   
 
@@ -17,9 +18,11 @@ def submit_job(args):
         response = requests.post(f"{BACKEND_URL}/submit-job", json=payload)        
         response.raise_for_status()
         data = response.json()
-        print(f"Job submitted successfully! Job ID: {data['job_id']}")
+        print(json.dumps(data))
     except Exception as e:
-        print(f"Error submitting job: {e}")
+        error_response = {"error": str(e)}
+        print(json.dumps(error_response))  # Also JSON on errors
+        sys.exit(1)
 
 def status_job(args):
     wait = getattr(args, "wait", False)

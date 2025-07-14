@@ -22,10 +22,14 @@ jobs:
 
       - name: Run qgjob submit
         run: |
-          python qg-job/qg-job.py submit --org-id qualgent --app-version-id xyz123 --test tests/onboarding.spec.js --priority 1 --target emulator > output.json
-          JOB_ID=$(jq -r '.job_id' output.json)
+          set -e  # Exit if anything fails
+          JOB_JSON=$(python qg-job/qg-job.py submit --org-id qualgent --app-version-id xyz123 --test tests/onboarding.spec.js --priority 1 --target emulator)
+          echo "$JOB_JSON"
+          echo "$JOB_JSON" > output.json
+          JOB_ID=$(echo "$JOB_JSON" | jq -r '.job_id')
           echo "Job ID: $JOB_ID"
           echo "JOB_ID=$JOB_ID" >> $GITHUB_ENV
+
 
       - name: Poll for job completion
         run: |

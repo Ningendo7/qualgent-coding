@@ -1,1 +1,1 @@
-// dummy test script for AppWright
+// dummy test script for AppWright.

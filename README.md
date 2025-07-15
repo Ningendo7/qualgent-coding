@@ -36,28 +36,37 @@ BACKEND_URL = "http://<your-hosts-ip>:8000"
 1. Navigate to the backend folder:
    ```bash
    cd qg-job_server
+
 Install dependencies:
+
 pip install -r requirements.txt
 
 Run the backend server:
+
 uvicorn main:app --host 0.0.0.0 --port 8000
 
 ---
 ### OPTIONAL: RUN BACKEND USING DOCKER
 cd qg-job_server
+
 docker build -t qg-job-server .
+
 docker run -p 8000:8000 qg-job-server
 
 ---
 ### CLI Tool
 Navigate to the CLI folder:
 cd qg-job
+
 Install dependencies:
+
 pip install -r requirements.txt
 
 Submit a job:
 python qg-job.py submit --org-id qualgent --app-version-id xyz123 --test tests/onboarding.spec.js --priority 1 --target emulator
+
 Check job status:
+
 python qg-job.py status --job-id <job_id>
 
 ---
@@ -88,16 +97,22 @@ Make sure the backend service is running and accessible.
 ---
 ### Submit a test job using the CLI:
 python qg-job.py submit --org-id qualgent --app-version-id xyz123 --test tests/onboarding.spec.js --priority 1 --target emulator
+
 Save the returned job_id.
 
 ---
 
 ### Poll for job status:
 python qg-job.py status --job-id <job_id>
+
 Repeat until job status is success or failed.
+
 ---
+
  Alternatively, push to your GitHub repo to trigger the GitHub Actions workflow.
+ 
 It will automatically submit the job and poll for status.
+
 ---
 
 ### Final Notes

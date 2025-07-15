@@ -43,8 +43,7 @@ Run the backend server:
 uvicorn main:app --host 0.0.0.0 --port 8000
 
 ---
-OPTIONAL: RUN BACKEND USING DOCKER
----
+### OPTIONAL: RUN BACKEND USING DOCKER
 cd qg-job_server
 docker build -t qg-job-server .
 docker run -p 8000:8000 qg-job-server
@@ -85,12 +84,14 @@ Jobs have priority and retry logic to handle failures and optimize execution sch
 Running an End-to-End Test
 Make sure the backend service is running and accessible.
 
+---
 ### Submit a test job using the CLI:
-
 python qg-job.py submit --org-id qualgent --app-version-id xyz123 --test tests/onboarding.spec.js --priority 1 --target emulator
 Save the returned job_id.
+
 ---
-Poll for job status:
+
+### Poll for job status:
 python qg-job.py status --job-id <job_id>
 Repeat until job status is success or failed.
 

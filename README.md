@@ -47,6 +47,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 cd qg-job_server
 docker build -t qg-job-server .
 docker run -p 8000:8000 qg-job-server
+
 ---
 ### CLI Tool
 Navigate to the CLI folder:
@@ -94,7 +95,7 @@ Save the returned job_id.
 ### Poll for job status:
 python qg-job.py status --job-id <job_id>
 Repeat until job status is success or failed.
-
+---
  Alternatively, push to your GitHub repo to trigger the GitHub Actions workflow.
 It will automatically submit the job and poll for status.
 ---

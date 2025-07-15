@@ -27,7 +27,7 @@ By default, the CLI tool uses `http://localhost:8000` to connect to the backend 
 - If you want to run the CLI on a different machine (like your local computer) and connect to a remote backend server (e.g., an EC2 instance), you should update the 'BACKEND_URL' variable in the CLI code to point to the backend’s accessible IP or hostname.  
 
 Example:
-BACKEND_URL = "http://<your-ip>:8000"
+BACKEND_URL = "http://<your-hosts-ip>:8000"
 
 ---
 

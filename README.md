@@ -19,6 +19,17 @@ It includes:
 - Git
 
 ---
+### Configuring Backend URL
+
+By default, the CLI tool uses `http://localhost:8000` to connect to the backend service.
+
+- If you run the CLI and backend on the same machine (e.g., in GitHub Actions or local Docker), no changes are needed.
+- If you want to run the CLI on a different machine (like your local computer) and connect to a remote backend server (e.g., an EC2 instance), you should update the 'BACKEND_URL' variable in the CLI code to point to the backend’s accessible IP or hostname.  
+
+Example:
+BACKEND_URL = "http://<your-ip>:8000"
+
+---
 
 ### Backend Service
 
@@ -30,6 +41,12 @@ pip install -r requirements.txt
 
 Run the backend server:
 uvicorn main:app --host 0.0.0.0 --port 8000
+
+---
+OPTIONAL: RUN BACKEND USING DOCKER
+cd qg-job_server
+docker build -t qg-job-server .
+docker run -p 8000:8000 qg-job-server
 ---
 CLI Tool
 Navigate to the CLI folder:

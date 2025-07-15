@@ -4,7 +4,7 @@ import sys
 import time
 import json
 
-BACKEND_URL = "http://18.212.231.237:8000"  # Change if your backend URL differs   
+BACKEND_URL = "http://localhost:8000"  # Change if your backend URL differs   
 
 def submit_job(args):
     payload = {

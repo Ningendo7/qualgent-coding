@@ -1,0 +1,30 @@
+name: Run BrowserStack Tests
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  browserstack-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      BS_USERNAME: ${{ secrets.BS_USERNAME }}
+      BS_ACCESS_KEY: ${{ secrets.BS_ACCESS_KEY }}
+
+    defaults:
+      run:
+        working-directory: browserstack
+
+    strategy:
+      matrix:
+        platform: [android, ios, windows]
+        search: ["Cristiano Ronaldo"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run test on ${{ matrix.platform }}
+        run: |
+          docker compose -f docker-compose.yaml run testrunner ${{ matrix.platform }} "${{ matrix.search }}"
